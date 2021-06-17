@@ -1,16 +1,10 @@
 window.onload = function () {
-    var canvas = document.getElementById('myCanvas');
+    var canvas = document.getElementById('canvas');
     let elemLeft = canvas.offsetLeft;
     let elemTop = canvas.offsetTop;
-    if (!canvas) {
-        alert("Impossible de récupérer le canvas");
-        return;
-    }
+    
     var context = canvas.getContext('2d');
-    if (!context) {
-        alert("Impossible de récupérer le context du canvas");
-        return;
-    }
+   
     elements = [];
     elements.push({
         colour: 'rgba(0, 0, 255, 0.1)',
