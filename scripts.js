@@ -69,7 +69,7 @@ window.onload = function () {
                   if(GameScore <= 3){
                     GameScore++;
                   
-                    document.getElementById("canvas").classList.add(".rescued"); 
+                    canvas.classList.toggle("rescued");
                    
                     console.log(element.nom);
                 //  alert('lol');

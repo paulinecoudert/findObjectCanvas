@@ -19,12 +19,19 @@
 }
 
 #canvas{
-   position: relative;
+   width: 900px;
+   height:600px;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-image: url("decor.png");
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+   border: 1px solid #000000;
 }
- .rescued {
-width:30%;
-margin: auto;
-    /* background: 100%; */
+#canvas.rescued {
     background-image:url("check.png");
     background-repeat: no-repeat;
  }
