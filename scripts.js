@@ -3,12 +3,12 @@ window.onload = function () {
     var canvas = document.getElementById('canvas');
     let elemLeft = canvas.offsetLeft;
     let elemTop = canvas.offsetTop;
-    
+
     var context = canvas.getContext('2d');
 
    var GameScore= 0;
 
-    elements = [];
+    var elements = [];
     elements.push({
         colour: 'rgba(0, 0, 255, 0.0)',
         width: 150,
@@ -57,35 +57,34 @@ window.onload = function () {
     });
 
     // Add event listener for `click` events.
-    canvas.addEventListener('click', function (event) {
+    canvas.addEventListener('click',function (event) {
         var x = event.pageX - elemLeft,
             y = event.pageY - elemTop;
-           
+
         // Collision detection between clicked offset and element.
         elements.forEach(function (element) {
-         
+
             if (y > element.top && y < element.top + element.height
                 && x > element.left && x < element.left + element.width) {
                   if(GameScore <= 3){
                     GameScore++;
-                  
+ 
                     canvas.classList.toggle("rescued");
-                   
                     console.log(element.nom);
                 //  alert('lol');
                 document.querySelector(".js-text").textContent = "Tu as trouvé: " + element.nom+' '  +GameScore+"/5 animaux";
             }
-                else if(GameScore === 4){
+                else if(GameScore === 4 ){
                     console.log(element.nom);
-                document.querySelector(".js-text").textContent = " Bravo le dernier etait: "+ element.nom+' ' +(GameScore+1) +"/5 animaux";
-                }
-            }
+             document.querySelector(".js-text").textContent = " Bravo tu les as tous trouvé!";
            
+            }
+
+            }
         });
     }, false);
-
+    
 };
 
-
-
+//////////////////////////////////////////////////////////////
 
