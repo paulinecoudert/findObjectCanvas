@@ -1,46 +1,59 @@
+
 window.onload = function () {
     var canvas = document.getElementById('canvas');
     let elemLeft = canvas.offsetLeft;
     let elemTop = canvas.offsetTop;
     
     var context = canvas.getContext('2d');
-   
+
+   var GameScore= 0;
+
     elements = [];
     elements.push({
-
-        colour: 'rgba(0, 0, 255, 0.1)',
+        colour: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
         top: 220,
-        left: 250
-    }   )
+        left: 250,
+        nom: "Elephant"
+    });
  
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.1)',
-        width: 150,
-        height: 100,
-        top: 90,
-        left: 450
-    });
-    elements.push({
-        colour: 'rgba(0, 0, 255, 0.1)',
+        colour: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
         top: 420,
-        left: 370
+        left: 370,
+        nom: "Hippo"
     });
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.1)',
+        colour: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
-        top: 320,
-        left:570
+        top: 370,
+        left: 180,
+        nom:"Lion"
+    });
+    elements.push({
+        colour: 'rgba(0, 0, 255, 0.0)',
+        width: 150,
+        height: 100,
+        top: 90,
+        left:450,
+        nom: "Perroquet"
+    });
+    elements.push({
+        colour: 'rgba(0, 0, 255, 0.0)',
+        width: 150,
+        height: 100,
+        top: 300,
+        left: 450,
+        nom: "Girafe"
     });
     // Render elements.
     elements.forEach(function (element) {
         context.fillStyle = element.colour;
         context.fillRect(element.left, element.top, element.width, element.height);
-        
     });
 
     // Add event listener for `click` events.
@@ -50,13 +63,24 @@ window.onload = function () {
            
         // Collision detection between clicked offset and element.
         elements.forEach(function (element) {
+         
             if (y > element.top && y < element.top + element.height
                 && x > element.left && x < element.left + element.width) {
-                    console.log(element);
+                  if(GameScore <= 3){
+                    GameScore++;
+                  
+                    document.getElementById("canvas").classList.add(".rescued"); 
                    
-                alert('yes'+ element.top);
+                    console.log(element.nom);
+                //  alert('lol');
+                document.querySelector(".js-text").textContent = "Tu as trouvé: " + element.nom+' '  +GameScore+"/5 animaux";
             }
-            
+                else if(GameScore === 4){
+                    console.log(element.nom);
+                document.querySelector(".js-text").textContent = " Bravo le dernier etait: "+ element.nom+' ' +(GameScore+1) +"/5 animaux";
+                }
+            }
+           
         });
     }, false);
 
@@ -64,28 +88,4 @@ window.onload = function () {
 
 
 
-//---------------------- Story Points ---------------------------
 
-//Story point state mechanism
-var storyPoints = {};
-
-
-
-//Update the view
-function refreshScenario() {
-  var known = getAllKnownStoryPoints();
-  var element = elements.find(s => {
-  
-     //Validate that we don't have any bypassers
-      for (var i=0; i<=s.bypass.length; i++) {
-        if ( known[s.bypass[i]] ) {
-           return false;
-        }
-     }
-     
-     //Validate that we have all of them
-     return s.required.every(entry => known[entry])
-  })
-  
-  document.querySelector(".js-text").textContent = element.text;
-}

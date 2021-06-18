@@ -13,13 +13,18 @@
     font-size: 1.1em;
  }
 
+.box{
+   text-align: center;
+   width:100%;
+}
 
-
+#canvas{
+   position: relative;
+}
  .rescued {
-
-   
-
-    background: 30%;
+width:30%;
+margin: auto;
+    /* background: 100%; */
     background-image:url("check.png");
     background-repeat: no-repeat;
  }
