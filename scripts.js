@@ -6,7 +6,15 @@ window.onload = function () {
 
     var context = canvas.getContext('2d');
 
+    var checkImg = new Image();
+    checkImg.src = "check.png";
+
    var GameScore= 0;
+
+//    checkImg.onload = () => { context.drawImage(checkImg, 0, 0, 170, 170, 0, 0, 70,50)}
+
+
+
 
     var elements = [];
     elements.push({
@@ -17,7 +25,7 @@ window.onload = function () {
         left: 250,
         nom: "Elephant"
     });
- 
+
     elements.push({
         colour: 'rgba(0, 0, 255, 0.0)',
         width: 150,
@@ -60,31 +68,58 @@ window.onload = function () {
     canvas.addEventListener('click',function (event) {
         var x = event.pageX - elemLeft,
             y = event.pageY - elemTop;
+          
+
 
         // Collision detection between clicked offset and element.
         elements.forEach(function (element) {
-
             if (y > element.top && y < element.top + element.height
                 && x > element.left && x < element.left + element.width) {
-                  if(GameScore <= 3){
-                    GameScore++;
- 
-                    canvas.classList.toggle("rescued");
-                    console.log(element.nom);
-                //  alert('lol');
-                document.querySelector(".js-text").textContent = "Tu as trouvé: " + element.nom+' '  +GameScore+"/5 animaux";
-            }
-                else if(GameScore === 4 ){
-                    console.log(element.nom);
-             document.querySelector(".js-text").textContent = " Bravo tu les as tous trouvé!";
-           
-            }
+                 
+                 console.log(x,y);
+    
 
-            }
+                 if (element.nom === "Perroquet"){
+                    drawCoordinates(x=168,y= 20);
+                    score=+2
+                }
+                if (element.nom === "Elephant"){
+                    drawCoordinates(x=105,y= 50);
+                }
+                if (element.nom === "Girafe"){
+                    drawCoordinates(x=165,y= 80);
+                
+                }
+                if (element.nom === "Hippo"){
+                    drawCoordinates(x=145,y= 110);
+                }
+                if (element.nom === "Lion"){
+                    drawCoordinates(x=80,y= 90);
+                  
+                }
+                GameScore++;
+            
+              
+        
+                    console.log(element.nom );
+                //  alert('lol');
+                document.querySelector(".js-text").textContent = "Tu as trouvé: " + element.nom+' '  + GameScore +"/5 animaux";
+                
+            };
+        
         });
     }, false);
-    
+
 };
 
 //////////////////////////////////////////////////////////////
 
+
+function drawCoordinates(x,y){
+     // Change according to the size of the point.
+    var context = document.getElementById("canvas").getContext("2d");
+
+    var checkImg = new Image();
+    checkImg.src = "check.png";
+    checkImg.onload = () => { context.drawImage(checkImg, x, y, 20, 20)}
+}

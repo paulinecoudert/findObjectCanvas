@@ -32,11 +32,3 @@
    border: 1px solid #000000;
    cursor: pointer;
 }
-#canvas.rescued {
-    background-image:url("check.png"), url("decor.png");
-    background-repeat: no-repeat;
-    cursor: pointer;
-    
-    
-   
- }
