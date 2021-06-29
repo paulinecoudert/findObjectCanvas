@@ -8,7 +8,6 @@ window.onload = function () {
 
     var checkImg = new Image();
     checkImg.src = "check.png";
-   
 
 
 
@@ -18,16 +17,16 @@ var GameScore = 0;
 
     var elements = [];
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
-        top: 230,
+        top: 200,
         left: 250,
         nom: "Elephant"
     });
 
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
         top: 420,
@@ -35,7 +34,7 @@ var GameScore = 0;
         nom: "Hippo"
     });
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
         top: 370,
@@ -43,7 +42,7 @@ var GameScore = 0;
         nom:"Lion"
     });
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
         top: 90,
@@ -51,7 +50,7 @@ var GameScore = 0;
         nom: "Perroquet"
     });
     elements.push({
-        colour: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
         top: 300,
@@ -60,9 +59,8 @@ var GameScore = 0;
     });
     // Render elements.
     elements.forEach(function (element) {
-        context.fillStyle = element.colour;
+        context.fillStyle = element.color;
         context.fillRect(element.left, element.top, element.width, element.height);
-       
     });
 
     // Add event listener for `click` events.
@@ -74,46 +72,34 @@ var GameScore = 0;
 
         // Collision detection between clicked offset and element.
         elements.forEach(function (element)  {
-          
+
             if (el = y > element.top && y < element.top + element.height
                 && x > element.left && x < element.left + element.width) {
+                    drawCoordinates(element.left + element.width/2 ,  element.top+ element.height/2);
 
-                 console.log(element.nom, x,y);
-              
-                 if (element.nom === "Perroquet"){
-                    drawCoordinates(x=168,y= 20);
-                    }
 
-                if (element.nom === "Elephant"){
-                    drawCoordinates(x=105,y= 50);
-                }
-                if (element.nom === "Girafe"){
-                    drawCoordinates(x=165,y= 80);
+                    elements = elements.filter(function( obj ) {
+                        return obj.nom !== element.nom;
 
-                }
-                if (element.nom === "Hippo"){
-                    drawCoordinates(x=145,y= 110);
-                }
+                    });
 
-                if (element.nom === "Lion"){
-                    drawCoordinates(x=80,y= 90);
-                }
-                
-                        if(GameScore <= 4 ){
+
+                        //console.log(element.nom, x,y);
+
+                        if(GameScore < 5 ){
                             GameScore++;
-                            document.querySelector(".js-text").textContent = "Tu as trouvé: " + element.nom+' '  + GameScore +"/5 animaux";
+                            document.querySelector(".js-text").textContent = "Tu as trouvé: " + element.nom+' ' + GameScore +"/5 animaux";
                         };
 
-                        if(GameScore === 5 && !el ){
+                        if(GameScore === 5 ){
                         console.log(el);
                         document.querySelector(".js-text").textContent = " Bravo le dernier etait: "+ element.nom+' ' +GameScore +"/5 animaux";
-                    
+
                         };
             };
-         
-        
+
         });
-    
+
     }, false);
 
 };
@@ -127,7 +113,10 @@ function drawCoordinates(x,y){
 
     var checkImg = new Image();
     checkImg.src = "check.png";
-    checkImg.onload = () => { context.drawImage(checkImg, x, y, 35, 22)}
+    checkImg.onload = () => {
+        width = checkImg.width
+        height = checkImg.height
+        context.drawImage(checkImg, x - width /2, y- height / 2, width , height)}
 };
 
 
