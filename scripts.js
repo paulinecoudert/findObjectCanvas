@@ -1,23 +1,16 @@
 
 window.onload = function () {
     var canvas = document.getElementById('canvas');
-    let elemLeft = canvas.offsetLeft;
+    var context = canvas.getContext('2d');
+    let elemLeft = canvas.offsetLeft  ;
     let elemTop = canvas.offsetTop;
 
-    var context = canvas.getContext('2d');
-
-    var checkImg = new Image();
-    checkImg.src = "check.png";
-
-
-
-//    checkImg.onload = () => { context.drawImage(checkImg, 0, 0, 170, 170, 0, 0, 70,50)}
 
 var GameScore = 0;
 
     var elements = [];
     elements.push({
-        color: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.9)',
         width: 150,
         height: 100,
         top: 200,
@@ -26,7 +19,7 @@ var GameScore = 0;
     });
 
     elements.push({
-        color: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.5)',
         width: 150,
         height: 100,
         top: 420,
@@ -34,7 +27,7 @@ var GameScore = 0;
         nom: "Hippo"
     });
     elements.push({
-        color: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.5)',
         width: 150,
         height: 100,
         top: 370,
@@ -42,7 +35,7 @@ var GameScore = 0;
         nom:"Lion"
     });
     elements.push({
-        color: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.5)',
         width: 150,
         height: 100,
         top: 90,
@@ -50,7 +43,7 @@ var GameScore = 0;
         nom: "Perroquet"
     });
     elements.push({
-        color: 'rgba(0, 0, 255, 0.0)',
+        color: 'rgba(0, 0, 255, 0.5)',
         width: 150,
         height: 100,
         top: 300,
@@ -61,6 +54,7 @@ var GameScore = 0;
     elements.forEach(function (element) {
         context.fillStyle = element.color;
         context.fillRect(element.left, element.top, element.width, element.height);
+    
     });
 
     // Add event listener for `click` events.
@@ -75,7 +69,7 @@ var GameScore = 0;
 
             if (el = y > element.top && y < element.top + element.height
                 && x > element.left && x < element.left + element.width) {
-                    drawCoordinates(element.left + element.width/2 ,  element.top+ element.height/2);
+                    drawCoordinates(element.left + element.width/2 ,  element.top + element.height/2);
 
 
                     elements = elements.filter(function( obj ) {
@@ -84,7 +78,7 @@ var GameScore = 0;
                     });
 
 
-                        //console.log(element.nom, x,y);
+                        console.log(element.nom, x,y);
 
                         if(GameScore < 5 ){
                             GameScore++;
@@ -92,7 +86,6 @@ var GameScore = 0;
                         };
 
                         if(GameScore === 5 ){
-                        console.log(el);
                         document.querySelector(".js-text").textContent = " Bravo le dernier etait: "+ element.nom+' ' +GameScore +"/5 animaux";
 
                         };
@@ -117,6 +110,5 @@ function drawCoordinates(x,y){
         width = checkImg.width
         height = checkImg.height
         context.drawImage(checkImg, x - width /2, y- height / 2, width , height)}
+
 };
-
-
