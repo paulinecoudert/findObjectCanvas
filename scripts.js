@@ -21,7 +21,7 @@ var GameScore = 0;
         colour: 'rgba(0, 0, 255, 0.0)',
         width: 150,
         height: 100,
-        top: 220,
+        top: 230,
         left: 250,
         nom: "Elephant"
     });
@@ -74,15 +74,14 @@ var GameScore = 0;
 
         // Collision detection between clicked offset and element.
         elements.forEach(function (element)  {
-
+          
             if (el = y > element.top && y < element.top + element.height
                 && x > element.left && x < element.left + element.width) {
 
-                 console.log(x,y);
+                 console.log(element.nom, x,y);
               
                  if (element.nom === "Perroquet"){
                     drawCoordinates(x=168,y= 20);
-
                     }
 
                 if (element.nom === "Elephant"){
@@ -112,7 +111,7 @@ var GameScore = 0;
                         };
             };
          
-
+        
         });
     
     }, false);
@@ -128,7 +127,7 @@ function drawCoordinates(x,y){
 
     var checkImg = new Image();
     checkImg.src = "check.png";
-    checkImg.onload = () => { context.drawImage(checkImg, x, y, 20, 15)}
-}
+    checkImg.onload = () => { context.drawImage(checkImg, x, y, 35, 22)}
+};
 
 
