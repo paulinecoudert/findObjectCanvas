@@ -20,16 +20,15 @@
 }
 
 #canvas{
+  max-width:100%;
 
-	max-width:100%;
-      height: auto;
 
     background-position-x: center;
     background-position-y: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-image: url("decor.png");
-
+    background-size: contain;
     background-origin: padding-box;
     background-clip: border-box;
    border: 1px solid #000000;
